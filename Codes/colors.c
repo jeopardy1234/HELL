@@ -1,4 +1,4 @@
-#include "colors.h"
+#include "shell.h"
 
 void cprint(char *s, char* col)
 {
@@ -6,3 +6,4 @@ void cprint(char *s, char* col)
     printf("%s",s);
     printf("%s",RST);
 }
+
