@@ -9,7 +9,7 @@ void pwd(int args)
     }
     else
     {
-        char *dir = malloc(sizeof(char)*MAX_DIR_SIZE);
+        char *dir = (char*) malloc(sizeof(char)*MAX_DIR_SIZE);
         getcwd(dir,MAX_DIR_SIZE);
         printf("%s",dir);
         free(dir);

@@ -28,6 +28,7 @@
 #define MAX_SYS_SIZE    1024
 #define MAX_DIR_SIZE    1024
 #define MAX_PROMPT_SIZE 1024
+#define MAX_INP_SIZE    2048
 
 /*Variables*/
 char curr_dir[MAX_DIR_SIZE];
@@ -36,6 +37,8 @@ char curr_dir[MAX_DIR_SIZE];
 void cprint(char *str_input, char* color);
 void echo(int argc, char **argv);
 void pwd(int args);
+
+char *whitespace_free_input(char *s);
 char * DisplayPrompt();
 
 #endif
