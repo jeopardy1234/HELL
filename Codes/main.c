@@ -1,6 +1,6 @@
 #include "shell.h"
 
-int main()
+int main(int argc, char **argv)
 {
-    pwd(2);
+    echo(argc,argv);
 }

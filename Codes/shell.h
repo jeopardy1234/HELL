@@ -34,6 +34,7 @@ char curr_dir[MAX_DIR_SIZE];
 
 /*List of Functions*/
 void cprint(char *str_input, char* color);
+void echo(int argc, char **argv);
 void pwd(int args);
 char * DisplayPrompt();
 
