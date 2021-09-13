@@ -18,7 +18,5 @@ char *whitespace_free_input(char *s)
         strncat(buffer, &s[i], 1);
         can_we_add_char = true;
     }
-
-    printf("%s",buffer);
     return buffer;
 }
