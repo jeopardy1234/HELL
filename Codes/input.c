@@ -1,3 +1,6 @@
+// Delete this once completely sure that 
+// this is useless
+
 #include "shell.h"
 #include <ctype.h>
 char *whitespace_free_input(char *s)

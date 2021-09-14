@@ -1,11 +1,11 @@
 #include "shell.h"
 
-void pwd(int slen)
+void pwd(int args)
 {
-    if(slen != 3)
+    if(args != 1)
     {
-        cprint("\nERROR: ", RED);
-        printf("pwd takes exactly one argument");
+        cprint("ERROR: ", RED);
+        printf("pwd takes exactly one argument\n");
     }
     else
     {

@@ -35,7 +35,7 @@ char curr_dir[MAX_DIR_SIZE];
 
 /*List of Functions*/
 void cprint(char *str_input, char* color);
-void echo(char *token);
+void echo(int argc, char argv[][MAX_INP_SIZE]);
 void pwd(int args);
 void execute_command(char *s);
 

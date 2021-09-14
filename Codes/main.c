@@ -1,5 +1,7 @@
 #include "shell.h"
 
+char inp[512][MAX_INP_SIZE];
+
 int main()
 {
     char *myPrompt = malloc(sizeof(char)*MAX_PROMPT_SIZE);
@@ -12,9 +14,15 @@ int main()
         fgets(InputTxt, MAX_INP_SIZE, stdin);
         InputTxt[strcspn(InputTxt, "\n")] = 0;
         char* token = strtok(InputTxt, ";");
+        int ind = -1;
         while (token != NULL) {
-            execute_command(token);
-            token = strtok(NULL, "-");
+            ind++;
+            strcpy(inp[ind],token);
+            token = strtok(NULL, ";");
+        }
+        for(int i=0; i<=ind; i++)
+        {
+            execute_command(inp[i]);
         }
     }
     free(myPrompt); free(InputTxt);

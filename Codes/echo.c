@@ -1,11 +1,11 @@
 #include "shell.h"
 
-void echo(char *token)
+void echo(int argc,char argv[][MAX_INP_SIZE])
 {
     //printf("%s",token);
-    while (token != NULL) {
-        printf("%s ",token);
-        token = strtok(NULL, " ");
+    for(int i=1; i<argc; i++)
+    {
+        printf("%s ",argv[i]);
     }
     printf("\n");
 }
