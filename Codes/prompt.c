@@ -11,9 +11,14 @@ char * DisplayPrompt()
     gethostname(system,MAX_SYS_SIZE);
     getcwd(curr_dir,MAX_DIR_SIZE);
 
-    if(strcmp(homedir,curr_dir) == 0)
+    if(strlen(homedir) <= strlen(curr_dir))
     {
-        sprintf(curr_dir,"~");
+        curr_dir[0] = '~';
+        int x = strlen(homedir);
+        for(int i=1; i<x; i++)
+        {
+            curr_dir[i] = curr_dir[i+x-1];
+        }
     }
 
     sprintf(prompt_val,"<%s%s@%s%s:%s%s>",YEL,usr,system,BLU,curr_dir,RST);
