@@ -1,11 +1,10 @@
 #include "shell.h"
 
-char inp[512][MAX_INP_SIZE];
-
 int main()
 {
     char *myPrompt = malloc(sizeof(char)*MAX_PROMPT_SIZE);
     char *InputTxt = malloc(sizeof(char)*MAX_INP_SIZE);
+    getcwd(homedir,MAX_DIR_SIZE);
     while(1)
     {
         myPrompt = DisplayPrompt();

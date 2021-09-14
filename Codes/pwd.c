@@ -5,7 +5,7 @@ void pwd(int args)
     if(args != 1)
     {
         cprint("ERROR: ", RED);
-        printf("pwd takes exactly one argument\n");
+        printf("Too many arguments\n");
     }
     else
     {

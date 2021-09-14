@@ -1,6 +1,5 @@
 #include "shell.h"
 
-char single_inp[512][MAX_INP_SIZE];
 void execute_command(char *s)
 {
     //s = whitespace_free_input(s);
@@ -15,4 +14,6 @@ void execute_command(char *s)
         pwd(ind+1);
     else if(strcmp(single_inp[0],"echo") == 0)
         echo(ind+1,single_inp);
+    else if(strcmp(single_inp[0],"cd") == 0)
+        cd(ind+1,single_inp);
 }
