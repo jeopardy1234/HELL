@@ -6,6 +6,9 @@
 #include <unistd.h>
 #include <time.h>
 #include <stdbool.h>
+#include <dirent.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #ifndef SABKA_BAAP_SHELL
 #define SABKA_BAAP_SHELL
@@ -42,6 +45,8 @@ void echo(int argc, char argv[][MAX_INP_SIZE]);
 void pwd(int args);
 void execute_command(char *s);
 void cd(int argc, char argv[][MAX_INP_SIZE]);
+void DisplayPerms(struct stat fileStat, char *fileName);
+void ls(int argc, char argv[][MAX_INP_SIZE]);
 
 char *whitespace_free_input(char *s);
 char * DisplayPrompt();

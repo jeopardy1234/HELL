@@ -16,4 +16,6 @@ void execute_command(char *s)
         echo(ind+1,single_inp);
     else if(strcmp(single_inp[0],"cd") == 0)
         cd(ind+1,single_inp);
+    else if(strcmp(single_inp[0],"ls") == 0)
+        ls(ind+1,single_inp);
 }

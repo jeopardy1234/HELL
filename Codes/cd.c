@@ -7,6 +7,12 @@ void cd(int argc, char argv[][MAX_INP_SIZE])
     {
         cprint("ERROR: ", RED);
         printf("Too many arguments\n");
+        return;
+    }
+    if(argc == 1)
+    {
+        chdir(homedir);
+        return;
     }
     if(strcmp(argv[1],".")==0)return;
     else
