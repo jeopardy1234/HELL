@@ -1,4 +1,6 @@
 #include "shell.h"
+#include <grp.h>
+#include <pwd.h>
 
 int flagChecker(bool *l, bool *a,int argc, char argv[][MAX_INP_SIZE])
 {
@@ -27,18 +29,33 @@ void ls(int argc, char argv[][MAX_INP_SIZE])
     DIR *directory;
     struct dirent *file;
     struct stat fileStat;
-
+    struct passwd *user;
+    struct group *group;
     directory = opendir(".");
     char date[40];
+    int tot_files = 0;
     while((file = readdir(directory)) != NULL)
     {
+        tot_files++;
         stat(file->d_name, &fileStat); 
-        if(l == true)DisplayPerms(fileStat,file->d_name);
-        printf(" %-15s", file->d_name);
-        if(l==false){printf("\n");continue;}   
-        printf("%-7ld",fileStat.st_size);
-        strftime(date, 35, "%b %d %H:%M", localtime(&fileStat.st_mtime));
-        printf("%-12s\n",date);
+        user=getpwuid(fileStat.st_uid);
+        group=getgrgid(fileStat.st_gid);
+        if(a==0)
+                if(file->d_name[0] == '.')
+                    continue;
+        if(l==1)
+        {
+            DisplayPerms(fileStat,file->d_name);
+            printf(" %ld %s %s",fileStat.st_nlink,user->pw_name,group->gr_name);
+            printf(" %-7ld",fileStat.st_size);
+            strftime(date, 35, "%b %d %H:%M", localtime(&fileStat.st_mtime));
+            printf("%-15s",date);
+        }
+        if(S_ISDIR(fileStat.st_mode))
+            printf(" %s%-15s%s\n",BLU, file->d_name,RST);
+        else
+            printf(" %s%-15s%s\n",GRN, file->d_name,RST);
     }
+    printf("%d",tot_files);
 
 }
