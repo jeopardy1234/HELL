@@ -2,7 +2,7 @@
 #include <grp.h>
 #include <pwd.h>
 
-int flagChecker(bool *l, bool *a,int argc, char argv[][MAX_INP_SIZE], char *path)
+int flagChecker(bool *l, bool *a,int argc, char **argv, char *path)
 {
     int cnt = 0;
     for(int i=1; i<argc; i++)
@@ -19,7 +19,7 @@ int flagChecker(bool *l, bool *a,int argc, char argv[][MAX_INP_SIZE], char *path
     return cnt;
 }
 
-void ls(int argc, char argv[][MAX_INP_SIZE])
+void ls(int argc, char **argv)
 {
     bool l=false, a=false;int cnt = 0;
     char *path = malloc(sizeof(char)*MAX_INP_SIZE);
@@ -84,7 +84,7 @@ void ls(int argc, char argv[][MAX_INP_SIZE])
         return;
     }
     char temp[MAX_INP_SIZE];
-    printf("Total : %d\n",x);
+    printf("Total files: %d\n",x);
     while (x--) 
 	{ 
         strcpy(temp,path);
@@ -107,7 +107,7 @@ void ls(int argc, char argv[][MAX_INP_SIZE])
         if(S_ISDIR(fileStat.st_mode))
             printf(" %s%-15s%s\n",BLU, namelist[x]->d_name,RST);
         else
-            printf(" %s%-15s%s\n",GRN, namelist[x]->d_name,RST); 
+            printf(" %s%-15s%s\n",WHT, namelist[x]->d_name,RST); 
         free(namelist[x]); 
 	} 
     free(namelist);

@@ -1,6 +1,6 @@
 #include "shell.h"
 
-void echo(int argc,char argv[][MAX_INP_SIZE])
+void echo(int argc,char **argv)
 {
     //printf("%s",token);
     for(int i=1; i<argc; i++)

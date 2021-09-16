@@ -1,7 +1,7 @@
 #include "shell.h"
 #include <dirent.h>
 
-void cd(int argc, char argv[][MAX_INP_SIZE])
+void cd(int argc, char **argv)
 {
     if(argc > 2)
     {
