@@ -69,12 +69,12 @@ void ls(int argc, char **argv)
                 printf(" %ld %s %s",fileStat.st_nlink,user->pw_name,group->gr_name);
                 printf(" %-7ld",fileStat.st_size);
                 strftime(date, 35, "%b %d %H:%M", localtime(&fileStat.st_mtime));
-                printf("%-15s",date);
+                printf("%-15s ",date);
             }
             if(S_ISDIR(fileStat.st_mode))
-                printf(" %s%-15s%s\n",BLU, path,RST);
+                printf("%s%-15s%s\n",BLU, path,RST);
             else
-                printf(" %s%-15s%s\n",WHT, path,RST); 
+                printf("%s%-15s%s\n",WHT, path,RST); 
         }
         else
         {
@@ -85,16 +85,16 @@ void ls(int argc, char **argv)
     }
     char temp[MAX_INP_SIZE];
     printf("Total files: %d\n",x);
-    while (x--) 
+    for(int i=0; i<x; i++)
 	{ 
         strcpy(temp,path);
         strcat(temp,"/");
-        strcat(temp,namelist[x]->d_name);
+        strcat(temp,namelist[i]->d_name);
         stat(temp, &fileStat); 
         user=getpwuid(fileStat.st_uid);
         group=getgrgid(fileStat.st_gid);
         if(a==0)
-            if(namelist[x]->d_name[0] == '.')
+            if(namelist[i]->d_name[0] == '.')
                 continue;
         if(l==1)
         {
@@ -102,13 +102,13 @@ void ls(int argc, char **argv)
             printf(" %ld %s %s",fileStat.st_nlink,user->pw_name,group->gr_name);
             printf(" %-7ld",fileStat.st_size);
             strftime(date, 35, "%b %d %H:%M", localtime(&fileStat.st_mtime));
-            printf("%-15s",date);
+            printf("%-15s ",date);
         }
         if(S_ISDIR(fileStat.st_mode))
-            printf(" %s%-15s%s\n",BLU, namelist[x]->d_name,RST);
+            printf("%s%-15s%s\n",BLU, namelist[i]->d_name,RST);
         else
-            printf(" %s%-15s%s\n",WHT, namelist[x]->d_name,RST); 
-        free(namelist[x]); 
+            printf("%s%-15s%s\n",WHT, namelist[i]->d_name,RST); 
+        free(namelist[i]); 
 	} 
     free(namelist);
 

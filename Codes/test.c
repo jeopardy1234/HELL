@@ -1,12 +1,7 @@
-#include <stdio.h>
+#include "shell.h"
 
 int main()
 {
-    int n=5;
-    while (n--)
-    {
-        /* code */
-        printf("%d\n",n);
-    }
-    
+   char *args[] = {"ls","-la","..",NULL};
+    execvp("ls",args);
 }
