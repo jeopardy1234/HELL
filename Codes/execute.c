@@ -23,7 +23,13 @@ void execute_command(char *s)
         ls(ind+1,single_inp);
     else
     {
-        execute_foreground(ind+1,single_inp);
+        if(strcmp("&",single_inp[ind]) == 0)
+        {
+            printf("HI,\n");
+            execute_background(ind+1,single_inp);
+        }
+        else
+            execute_foreground(ind+1,single_inp);
     }
     for(int i=0;i<=ind;i++)
         free(single_inp[i]);

@@ -50,6 +50,7 @@ void cd(int argc, char **argv);
 void DisplayPerms(struct stat fileStat, char *fileName);
 void ls(int argc, char **argv);
 void execute_foreground(int argc, char **argv);
+void execute_background(int argc, char **argv);
 
 char *whitespace_free_input(char *s);
 char * DisplayPrompt();
