@@ -25,7 +25,6 @@ void execute_command(char *s)
     {
         if(strcmp("&",single_inp[ind]) == 0)
         {
-            printf("HI,\n");
             execute_background(ind+1,single_inp);
         }
         else
