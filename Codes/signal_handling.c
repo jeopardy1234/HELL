@@ -13,17 +13,17 @@ void ReturnTerminatedProcess(int sig)
             if(!stat)
             {
                 printf("\nProcess %s with id %d terminated normally\n",Process_Array[i].Name,Process_Array[i].pid);
-                EntersSigchildHandler = true;
+                printf("%s",DisplayPrompt());
             }
             else
             {
                 printf("\nProcess %s with id %d terminated abnormally\n",Process_Array[i].Name,Process_Array[i].pid);
-                EntersSigchildHandler = true;
+                printf("%s",DisplayPrompt());
             }
             Process_Array[i].stat = false;
             free(Process_Array[i].Name);
         }
     }
-    EntersSigchildHandler = true;
+    fflush(stdout);
     return ;
 }
