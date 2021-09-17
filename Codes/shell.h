@@ -15,6 +15,11 @@
 #ifndef SABKA_BAAP_SHELL
 #define SABKA_BAAP_SHELL
 
+typedef struct proc{
+    int pid;
+    char *Name;
+    bool stat; //0 for passive, 1 for active
+}process;
 /*List of Macros*/
 
 /*Colors*/
@@ -35,11 +40,15 @@
 #define MAX_PROMPT_SIZE 1024
 #define MAX_INP_SIZE    2048
 
+/*Misc*/
+#define MAX_PROCESSES   1024
+
 /*Variables*/
 char curr_dir[MAX_DIR_SIZE];
-//char single_inp[512][MAX_INP_SIZE];
 char inp[512][MAX_INP_SIZE];
 char homedir[MAX_DIR_SIZE];
+process Process_Array[1024];
+bool EntersSigchildHandler;
 
 /*List of Functions*/
 void cprint(char *str_input, char* color);
@@ -51,8 +60,8 @@ void DisplayPerms(struct stat fileStat, char *fileName);
 void ls(int argc, char **argv);
 void execute_foreground(int argc, char **argv);
 void execute_background(int argc, char **argv);
+void ReturnTerminatedProcess(int sig);
 
-char *whitespace_free_input(char *s);
 char * DisplayPrompt();
 
 #endif

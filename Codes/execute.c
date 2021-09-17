@@ -24,9 +24,7 @@ void execute_command(char *s)
     else
     {
         if(strcmp("&",single_inp[ind]) == 0)
-        {
             execute_background(ind+1,single_inp);
-        }
         else
             execute_foreground(ind+1,single_inp);
     }

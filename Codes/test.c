@@ -2,6 +2,5 @@
 
 int main()
 {
-   char *args[] = {"ls","-la","..",NULL};
-    execvp("ls",args);
+    printf("Hi\n");
 }
