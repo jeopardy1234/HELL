@@ -13,8 +13,7 @@ int main()
         myPrompt = DisplayPrompt();
         printf("%s",myPrompt);
         fflush(stdout);
-        int sig = signal(SIGCHLD,ReturnTerminatedProcess);
-        printf("%d\n",sig);
+        signal(SIGCHLD,ReturnTerminatedProcess);
         fgets(InputTxt, MAX_INP_SIZE, stdin);
         InputTxt[strcspn(InputTxt, "\n")] = 0;
         char* token = strtok(InputTxt, ";");

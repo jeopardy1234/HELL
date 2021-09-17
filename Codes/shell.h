@@ -61,6 +61,8 @@ void ls(int argc, char **argv);
 void execute_foreground(int argc, char **argv);
 void execute_background(int argc, char **argv);
 void ReturnTerminatedProcess(int sig);
+void execute_whitespace_Separated(char **single_inp, int argc);
+void repeat(int argc, char **argv);
 
 char * DisplayPrompt();
 

@@ -1,5 +1,27 @@
 #include "shell.h"
 
+void execute_whitespace_Separated(char **single_inp, int argc)
+{
+    single_inp[argc] = NULL;
+    if(strcmp(single_inp[0],"pwd") == 0)
+        pwd(argc);
+    else if(strcmp(single_inp[0],"echo") == 0)
+        echo(argc,single_inp);
+    else if(strcmp(single_inp[0],"cd") == 0)
+        cd(argc,single_inp);
+    else if(strcmp(single_inp[0],"ls") == 0)
+        ls(argc,single_inp);
+    else if(strcmp(single_inp[0],"repeat") == 0)
+        repeat(argc,single_inp);
+    else
+    {
+        if(strcmp("&",single_inp[argc-1]) == 0)
+            execute_background(argc,single_inp);
+        else
+            execute_foreground(argc,single_inp);
+    }
+}
+
 void execute_command(char *s)
 {
     //s = whitespace_free_input(s);
@@ -12,22 +34,7 @@ void execute_command(char *s)
         strcpy(single_inp[ind],token);
         token = strtok(NULL, " \t\v");
     }
-    single_inp[ind+1] = NULL;
-    if(strcmp(single_inp[0],"pwd") == 0)
-        pwd(ind+1);
-    else if(strcmp(single_inp[0],"echo") == 0)
-        echo(ind+1,single_inp);
-    else if(strcmp(single_inp[0],"cd") == 0)
-        cd(ind+1,single_inp);
-    else if(strcmp(single_inp[0],"ls") == 0)
-        ls(ind+1,single_inp);
-    else
-    {
-        if(strcmp("&",single_inp[ind]) == 0)
-            execute_background(ind+1,single_inp);
-        else
-            execute_foreground(ind+1,single_inp);
-    }
+    execute_whitespace_Separated(single_inp,ind+1);
     for(int i=0;i<=ind;i++)
         free(single_inp[i]);
     free(single_inp);
