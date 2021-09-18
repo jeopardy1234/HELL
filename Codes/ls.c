@@ -55,7 +55,6 @@ void ls(int argc, char **argv)
         struct group *group;
         char date[40];
         int tot_files = 0;
-        printf("\n");
         int x = scandir(path[i], &namelist, NULL, alphasort);
         if(x == -1)
         {
@@ -81,6 +80,7 @@ void ls(int argc, char **argv)
                 cprint("ERROR: ",RED);
                 printf("Given file or directory does not exist!!\n");
             }
+            printf("\n");
             continue;
         }
         char temp[MAX_INP_SIZE];
@@ -92,7 +92,7 @@ void ls(int argc, char **argv)
             strcat(temp,namelist[j]->d_name);
             stat(temp, &fileStat); 
             tot += fileStat.st_blocks;
-            if(a && namelist[j]->d_name[0] == '.')
+            if(!a && namelist[j]->d_name[0] == '.')
                 tot -= fileStat.st_blocks;
         }
         printf("total %d\n",tot/2);
@@ -122,7 +122,7 @@ void ls(int argc, char **argv)
             free(namelist[j]); 
         } 
         free(namelist);
-  
+        printf("\n");
     }
     for(int i=0; i<cnt; i++)
     {
@@ -131,4 +131,4 @@ void ls(int argc, char **argv)
     free(path);
     return ;
 
-}
+}       
