@@ -26,30 +26,26 @@ void ls(int argc, char **argv)
     bool l=false, a=false;int cnt = 0;
     char **path = malloc(sizeof(char*)*MAX_PATHS);
     cnt = flagChecker(&l,&a,argc,argv,path);
-    if(cnt == 0)cnt++;
+    if(cnt == 0)
+    {
+        path[0] = malloc(sizeof(char)*MAX_INP_SIZE);
+        path[0][0] = '.';
+        path[0][1] = '\0';
+        cnt++;
+    }
     for(int i=0; i<cnt; i++)
     {
         // path[i][0] = '\0';
-        if(path[i] == NULL)
+        if(path[i][0] == '~')
         {
-            path[i] = malloc(sizeof(char)*MAX_INP_SIZE);
-            path[i][0] = '.';
-            path[i][1] = '\0';
-        }
-        
-        else
-        {
-            if(path[i][0] == '~')
+            if(strlen(path[i]) == 1)
+                path[i] = homedir;
+            else
             {
-                if(strlen(path[i]) == 1)
-                    path[i] = homedir;
-                else
-                {
-                    char *temp = malloc(sizeof(char)*MAX_INP_SIZE);
-                    strcpy(temp,path[i]+2);
-                    strcpy(homedir,path[i]);
-                    strcat(path[i], temp);
-                }
+                char *temp = malloc(sizeof(char)*MAX_INP_SIZE);
+                strcpy(temp,path[i]+2);
+                strcpy(homedir,path[i]);
+                strcat(path[i], temp);
             }
         }
         DIR *directory;
@@ -88,7 +84,18 @@ void ls(int argc, char **argv)
             continue;
         }
         char temp[MAX_INP_SIZE];
-        printf("Total files: %d\n",x);
+        int tot = 0;
+        for(int j=0; j<x; j++)
+        { 
+            strcpy(temp,path[i]);
+            strcat(temp,"/");
+            strcat(temp,namelist[j]->d_name);
+            stat(temp, &fileStat); 
+            tot += fileStat.st_blocks;
+            if(a && namelist[j]->d_name[0] == '.')
+                tot -= fileStat.st_blocks;
+        }
+        printf("total %d\n",tot/2);
         for(int j=0; j<x; j++)
         { 
             strcpy(temp,path[i]);
@@ -115,9 +122,7 @@ void ls(int argc, char **argv)
             free(namelist[j]); 
         } 
         free(namelist);
-        free(directory);
-        free(user);
-        // free(group);
+  
     }
     for(int i=0; i<cnt; i++)
     {
