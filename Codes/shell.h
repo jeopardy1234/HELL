@@ -39,6 +39,7 @@ typedef struct proc{
 #define MAX_DIR_SIZE    1024
 #define MAX_PROMPT_SIZE 1024
 #define MAX_INP_SIZE    2048
+#define MAX_PATHS       512
 
 /*Misc*/
 #define MAX_PROCESSES   1024
@@ -63,6 +64,7 @@ void execute_background(int argc, char **argv);
 void ReturnTerminatedProcess(int sig);
 void execute_whitespace_Separated(char **single_inp, int argc);
 void repeat(int argc, char **argv);
+void pinfo(int argc, char **argv);
 
 char * DisplayPrompt();
 

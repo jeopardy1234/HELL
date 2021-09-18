@@ -7,6 +7,7 @@ void execute_background(int argc, char **argv)
     if(pid == 0)
     {
         printf("%d\n",getpid());
+        setpgid(0,0);
         if(execvp(argv[0],argv) < 0)
         {
             printf("%d\n",getpid());

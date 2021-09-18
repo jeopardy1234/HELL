@@ -10,6 +10,7 @@ int main()
     getcwd(homedir,MAX_DIR_SIZE);
     while(1)
     {
+        signal(SIGINT, SIG_IGN);
         myPrompt = DisplayPrompt();
         printf("%s",myPrompt);
         fflush(stdout);
