@@ -13,8 +13,8 @@ void execute_whitespace_Separated(char **single_inp, int argc)
         ls(argc,single_inp);
     else if(strcmp(single_inp[0],"repeat") == 0)
         repeat(argc,single_inp);
-    // else if(strcmp(single_inp[0],"pinfo") == 0)
-    //     pinfo(argc,single_inp);
+    else if(strcmp(single_inp[0],"pinfo") == 0)
+        pinfo(argc,single_inp);
     else
     {
         if(strcmp("&",single_inp[argc-1]) == 0)

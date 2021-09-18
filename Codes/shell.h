@@ -65,6 +65,7 @@ void ReturnTerminatedProcess(int sig);
 void execute_whitespace_Separated(char **single_inp, int argc);
 void repeat(int argc, char **argv);
 void pinfo(int argc, char **argv);
+int toDecimal(char *s);
 
 char * DisplayPrompt();
 
