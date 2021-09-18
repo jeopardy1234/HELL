@@ -3,6 +3,7 @@
 
 void cd(int argc, char **argv)
 {
+    char temp[1024];
     if(argc > 2)
     {
         cprint("ERROR: ", RED);
@@ -12,30 +13,48 @@ void cd(int argc, char **argv)
     if(argc == 1)
     {
         chdir(homedir);
+        strcpy(PrevPath,temp);
         return;
     }
-    if(strcmp(argv[1],".")==0)return;
+    DIR* dir = opendir(argv[1]);
+    if(!dir && strcmp(argv[1],"-") != 0)
+    {
+        cprint("ERROR: ",RED);
+        printf("No such file or directory\n");
+    }
+    if(strcmp(argv[1],".")==0 )
+    {
+        strcpy(PrevPath,temp);
+        return ;
+    }
     else
     {
-        if(argv[1][0] != '~')
-            chdir(argv[1]);
-        else
+        getcwd(temp,MAX_DIR_SIZE);
+        if(argv[1][0] == '~')
         {
             chdir(homedir);
             if(argv[1][1] != '\0')
                 chdir(argv[1]+2);
         }
-    }
-    DIR *d;
-    struct dirent *dir;
-    d = opendir(".");
-    if (d)
-    {
-        while ((dir = readdir(d)) != NULL)
+        else if(strcmp(argv[1],"-") == 0)
         {
-            printf("%s\n", dir->d_name);
+            if(PrevPath[0] == '\0')
+            {
+                cprint("ERROR: ", RED);
+                printf("OLDPWD not set\n");
+                return;
+            }
+            else
+            {
+                getcwd(temp,MAX_DIR_SIZE);
+                chdir(PrevPath);
+                printf("%s\n",temp);
+            }
         }
-        closedir(d);
+        else
+        {
+            chdir(argv[1]);
+        }
+        strcpy(PrevPath,temp);
     }
-    
 }

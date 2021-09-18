@@ -4,7 +4,9 @@ int main()
 {
     char *myPrompt = malloc(sizeof(char)*MAX_PROMPT_SIZE);
     char *InputTxt = malloc(sizeof(char)*MAX_INP_SIZE);
-    EntersSigchildHandler = false;
+    PrevPath = malloc(sizeof(char)*MAX_DIR_SIZE);
+    history_file=fopen("history.txt","a");
+    PrevPath[0] = '\0';
     for(int i=0; i<MAX_PROCESSES; i++)
         Process_Array[i].stat = false;
     getcwd(homedir,MAX_DIR_SIZE);
@@ -16,6 +18,8 @@ int main()
         fflush(stdout);
         signal(SIGCHLD,ReturnTerminatedProcess);
         fgets(InputTxt, MAX_INP_SIZE, stdin);
+        //StoreHistory(InputTxt,history_file);
+        fprintf(history_file,"%s",InputTxt);
         InputTxt[strcspn(InputTxt, "\n")] = 0;
         char* token = strtok(InputTxt, ";");
         int ind = -1;

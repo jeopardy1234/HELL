@@ -15,6 +15,8 @@ void execute_whitespace_Separated(char **single_inp, int argc)
         repeat(argc,single_inp);
     else if(strcmp(single_inp[0],"pinfo") == 0)
         pinfo(argc,single_inp);
+    else if(strcmp(single_inp[0],"history") == 0)
+        DisplayHistory(argc,single_inp,history_file);
     else
     {
         if(strcmp("&",single_inp[argc-1]) == 0)

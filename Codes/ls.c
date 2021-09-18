@@ -95,7 +95,8 @@ void ls(int argc, char **argv)
             if(!a && namelist[j]->d_name[0] == '.')
                 tot -= fileStat.st_blocks;
         }
-        printf("total %d\n",tot/2);
+        if(l || a)
+            printf("total %d\n",tot/2);
         for(int j=0; j<x; j++)
         { 
             strcpy(temp,path[i]);
