@@ -36,6 +36,8 @@ int main()
         StoreHistory(InputTxt);
         fclose(history_file);
         InputTxt[strcspn(InputTxt, "\n")] = 0;
+        if(strcmp("quit",InputTxt) == 0)
+            return 0;
         char* token = strtok(InputTxt, ";");
         int ind = -1;
         while (token != NULL) {
@@ -49,4 +51,5 @@ int main()
         }
     }
     free(myPrompt); free(InputTxt);
+    free(ProcessPath); free(ProcessInfopath);
 }
