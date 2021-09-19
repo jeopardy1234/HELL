@@ -3,8 +3,8 @@
 
 void cd(int argc, char **argv)
 {
-    char temp[1024];
-    if(argc > 2)
+    char temp[1024]; //Stores current directory name
+    if(argc > 2)     //If args > 2 show error
     {
         cprint("ERROR: ", RED);
         printf("Too many arguments\n");
@@ -17,7 +17,7 @@ void cd(int argc, char **argv)
         return;
     }
     DIR* dir = opendir(argv[1]);
-    if(!dir && strcmp(argv[1],"-") != 0)
+    if(!dir && strcmp(argv[1],"-") != 0) //incase directory is absent
     {
         cprint("ERROR: ",RED);
         printf("No such file or directory\n");
@@ -34,11 +34,11 @@ void cd(int argc, char **argv)
         {
             chdir(homedir);
             if(argv[1][1] != '\0')
-                chdir(argv[1]+2);
+                chdir(argv[1]+2); // ~/Path, so base + 2
         }
         else if(strcmp(argv[1],"-") == 0)
         {
-            if(PrevPath[0] == '\0')
+            if(PrevPath[0] == '\0') //incase cd hasnt been done before
             {
                 cprint("ERROR: ", RED);
                 printf("OLDPWD not set\n");

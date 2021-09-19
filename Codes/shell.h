@@ -71,6 +71,7 @@ int toDecimal(char *s);
 
 char * DisplayPrompt();
 char *PrevPath;
+char *hisfile;
 
 #endif
 

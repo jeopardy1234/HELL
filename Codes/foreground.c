@@ -2,10 +2,10 @@
 
 void execute_foreground(int argc, char **argv)
 {
-    int pid = fork();
+    int pid = fork();                   //Create a child process
     if(pid == 0)
     {
-        if(execvp(argv[0],argv) < 0)
+        if(execvp(argv[0],argv) < 0)    //Invalid command
         {
             cprint("ERROR: ",RED);
             printf("Invalid Command!!\n");
@@ -13,5 +13,5 @@ void execute_foreground(int argc, char **argv)
         }    
     }
     else
-        wait(NULL);
+        wait(NULL);                     //Shush! Wait unitl the process completes
 }

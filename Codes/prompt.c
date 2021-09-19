@@ -7,13 +7,13 @@ char * DisplayPrompt()
     char *curr_dir = (char*)malloc(sizeof(char)*MAX_DIR_SIZE);
     char *prompt_val = (char*)malloc(sizeof(char)*MAX_PROMPT_SIZE);
 
-    getlogin_r(usr,MAX_USR_SIZE);
-    gethostname(system,MAX_SYS_SIZE);
-    getcwd(curr_dir,MAX_DIR_SIZE);
+    getlogin_r(usr,MAX_USR_SIZE);       //Username
+    gethostname(system,MAX_SYS_SIZE);   //Kinda device specs
+    getcwd(curr_dir,MAX_DIR_SIZE);      //Current dir
 
     if(strlen(homedir) <= strlen(curr_dir))
     {
-        curr_dir[0] = '~';
+        curr_dir[0] = '~';              //Modify home directory
         int x = strlen(homedir);
         for(int i=1; i<x; i++)
         {

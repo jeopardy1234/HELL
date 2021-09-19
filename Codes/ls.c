@@ -2,6 +2,24 @@
 #include <grp.h>
 #include <pwd.h>
 
+
+/*
+    ls -l fields :
+    field 1 : Permissions 
+    field 2 : Number of links
+    field 3 : Owner
+    field 4 : Group
+    field 5 : Size
+    field 6 : Month
+    field 7 : Day
+    field 8 : Time
+    field 9 : Filename
+*/
+
+/*
+    Check for the presence of -l , -a, -al, -la
+    Store the  rest of them into a 2D array, as files/directories to be inspected
+*/
 int flagChecker(bool *l, bool *a,int argc, char **argv,char **path)
 {
     int cnt = 0;
@@ -26,7 +44,7 @@ void ls(int argc, char **argv)
     bool l=false, a=false;int cnt = 0;
     char **path = malloc(sizeof(char*)*MAX_PATHS);
     cnt = flagChecker(&l,&a,argc,argv,path);
-    if(cnt == 0)
+    if(cnt == 0) //Incase no argument was provided
     {
         path[0] = malloc(sizeof(char)*MAX_INP_SIZE);
         path[0][0] = '.';
@@ -35,7 +53,7 @@ void ls(int argc, char **argv)
     }
     for(int i=0; i<cnt; i++)
     {
-        // path[i][0] = '\0';
+        //If ~, then shell dir = home dir
         if(path[i][0] == '~')
         {
             if(strlen(path[i]) == 1)
@@ -46,8 +64,13 @@ void ls(int argc, char **argv)
                 strcpy(temp,path[i]+2);
                 strcpy(homedir,path[i]);
                 strcat(path[i], temp);
+                free(temp);
             }
         }
+        /*
+            namelist would store the list of files in the directory
+            fileStat helps us get data about the files
+        */
         DIR *directory;
         struct dirent **namelist; 
         struct stat fileStat;
@@ -56,9 +79,9 @@ void ls(int argc, char **argv)
         char date[40];
         int tot_files = 0;
         int x = scandir(path[i], &namelist, NULL, alphasort);
-        if(x == -1)
+        if(x == -1) //Incase it was an incorrect path OR a file instead of directory
         {
-            if( access(path[i], F_OK ) == 0 ) {
+            if( access(path[i], F_OK ) == 0 ) { //Checks whether the file exists
                 stat(path[i], &fileStat); 
                 user=getpwuid(fileStat.st_uid);
                 group=getgrgid(fileStat.st_gid);
@@ -75,7 +98,7 @@ void ls(int argc, char **argv)
                 else
                     printf("%s%-15s%s\n",WHT, path[i],RST); 
             }
-            else
+            else //If not even a file, print error
             {
                 cprint("ERROR: ",RED);
                 printf("Given file or directory does not exist!!\n");
@@ -96,12 +119,12 @@ void ls(int argc, char **argv)
                 tot -= fileStat.st_blocks;
         }
         if(l || a)
-            printf("total %d\n",tot/2);
+            printf("total %d\n",tot/2);     //Print the blocks/2 occupied by the program
         for(int j=0; j<x; j++)
         { 
-            strcpy(temp,path[i]);
-            strcat(temp,"/");
-            strcat(temp,namelist[j]->d_name);
+            strcpy(temp,path[i]);               //temp = dir
+            strcat(temp,"/");                   //temp = dir/
+            strcat(temp,namelist[j]->d_name);   //temp = dir/[file_name]
             stat(temp, &fileStat); 
             user=getpwuid(fileStat.st_uid);
             group=getgrgid(fileStat.st_gid);
@@ -123,11 +146,7 @@ void ls(int argc, char **argv)
             free(namelist[j]); 
         } 
         free(namelist);
-        printf("\n");
-    }
-    for(int i=0; i<cnt; i++)
-    {
-        free(path[i]);
+        if(i != cnt-1)printf("\n");
     }
     free(path);
     return ;

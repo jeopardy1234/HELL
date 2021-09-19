@@ -7,6 +7,8 @@ void ReturnTerminatedProcess(int sig)
     {
         if(Process_Array[i].stat)
         {
+            //WNOHANG wont really wait for the process to complete
+            //Reaps without waiting
             int waitRet = waitpid(Process_Array[i].pid,&stat,WNOHANG);
             if(waitRet == 0)
                 continue;

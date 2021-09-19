@@ -19,13 +19,13 @@ int toDecimal(char *s)
 
 void repeat(int argc, char **argv)
 {
-    if(argc < 3)
+    if(argc < 3)    //Atleast 3 args required
     {
         cprint("ERROR: ", RED);
         printf("repeat is missing some arguments\n");
         return ;
     }
-    int HowMany = toDecimal(argv[1]);
+    int HowMany = toDecimal(argv[1]); //Frequency
     if(HowMany == -1)
     {
         cprint("repeat: ", RED);
@@ -34,6 +34,7 @@ void repeat(int argc, char **argv)
     }
     for(int i=0; i<HowMany; i++)
     {
-        execute_whitespace_Separated(&argv[2],argc-2);
+        execute_whitespace_Separated(&argv[2],argc-2); //repeat [freq] [stuff]
+                                                       //Stuff is at argv[2]
     }
-}
+} 
