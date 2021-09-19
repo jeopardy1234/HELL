@@ -1,27 +1,36 @@
 #include "shell.h"
 
-void StoreHistory(char *s, FILE *file)
+void StoreHistory(char *s)
 {
-    FILE *tempFile = fopen("temporary_file.txt","r");
     char buffer[MAX_INP_SIZE];
+    FILE *file = fopen("history.txt","r");
+    FILE *tempFile = fopen("temporary_file.txt","w");
+    int cnt = 0;
     while(fgets(buffer, sizeof(buffer), file) != NULL) {
-         if(strcmp(s,buffer) == 0)continue;
-         fprintf(tempFile,"%s",buffer);
-     }
-    //  while(fgets(buffer, sizeof(buffer), tempFile) != NULL) {
-    //      //if(strcmp(s,buffer) == 0)continue;
-    //      fprintf(history_file,"%s",buffer);
-    //  }
-    //  fprintf(history_file,"%s",s);
-    //  fclose(tempFile);
-    //  fclose(history_file);
-    //  remove("history.txt");
-    //  rename("temporary_file.txt","history.txt");
-     //history_file = fopen("history.txt","r+");
+        if(strcmp(s,buffer) == 0)continue;
+        fprintf(tempFile,"%s",buffer);
+        cnt++;
+    }
+    fprintf(tempFile,"%s",s);
+    fclose(tempFile);
+    fclose(file);
+    remove("history.txt");
+    file = fopen("history.txt","w");
+    tempFile = fopen("temporary_file.txt","r");
+    while(fgets(buffer, sizeof(buffer), tempFile) != NULL) {
+        if(cnt > 19)
+            {cnt--; continue;}
+        fprintf(file,"%s",buffer);
+        cnt--;
+    }
+    fclose(file);
+    fclose(tempFile);
+    remove("temporary_file.txt");
 }
 
-void DisplayHistory(int argc, char**argv, FILE* file)
+void DisplayHistory(int argc, char**argv)
 {
+    FILE *file = fopen("history.txt","r");
     if(argc > 2)
     {
         cprint("ERROR: ",RED);
@@ -39,12 +48,18 @@ void DisplayHistory(int argc, char**argv, FILE* file)
             return ;
         }
     }
+    int initial_lines = 0;
     char buffer[MAX_INP_SIZE];
     while(fgets(buffer, sizeof(buffer), file) != NULL) {
-         num_lines--;
-         if(num_lines < 0)break;
-         fputs(buffer, stdout);
-     }
-    rewind(history_file);
-
+        initial_lines++;
+    }
+    rewind(file);
+    while(fgets(buffer, sizeof(buffer), file) != NULL) {
+        if(initial_lines <= num_lines)
+        {
+            fputs(buffer, stdout);
+        }
+        initial_lines--;
+    }
+    fclose(file);
 }

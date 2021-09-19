@@ -48,7 +48,7 @@ void cd(int argc, char **argv)
             {
                 getcwd(temp,MAX_DIR_SIZE);
                 chdir(PrevPath);
-                printf("%s\n",temp);
+                printf("%s\n",PrevPath);
             }
         }
         else

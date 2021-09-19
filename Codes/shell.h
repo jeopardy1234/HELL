@@ -50,7 +50,6 @@ char inp[512][MAX_INP_SIZE];
 char homedir[MAX_DIR_SIZE];
 process Process_Array[1024];
 bool EntersSigchildHandler;
-FILE* history_file;
 /*List of Functions*/
 void cprint(char *str_input, char* color);
 void echo(int argc, char **argv);
@@ -65,8 +64,8 @@ void ReturnTerminatedProcess(int sig);
 void execute_whitespace_Separated(char **single_inp, int argc);
 void repeat(int argc, char **argv);
 void pinfo(int argc, char **argv);
-void DisplayHistory(int argc, char**argv, FILE* file);
-void StoreHistory(char *s, FILE *file);
+void DisplayHistory(int argc, char**argv);
+void StoreHistory(char *s);
 
 int toDecimal(char *s);
 
