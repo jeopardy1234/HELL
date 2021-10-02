@@ -22,8 +22,13 @@ int main()
     for(int i=0; i<LastSlash; i++)
         strncat(hisfile,&ProcessPath[i],1);
     strcat(hisfile,"history.txt");
+
+    stin = dup(STDIN_FILENO);
+    stou = dup(STDOUT_FILENO);
     while(1)
     {
+        dup2(stin,STDIN_FILENO);
+        dup2(stou,STDOUT_FILENO);
         signal(SIGINT, SIG_IGN);        //When a child process terminates
         myPrompt = DisplayPrompt();
         printf("%s",myPrompt);

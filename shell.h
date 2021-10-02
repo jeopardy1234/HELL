@@ -7,6 +7,7 @@
 #include <time.h>
 #include <stdbool.h>
 #include <dirent.h>
+#include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
@@ -66,12 +67,16 @@ void repeat(int argc, char **argv);
 void pinfo(int argc, char **argv);
 void DisplayHistory(int argc, char**argv);
 void StoreHistory(char *s);
+void redirect_input_output(int *argc, char **argv);
 
 int toDecimal(char *s);
 
 char * DisplayPrompt();
 char *PrevPath;
 char *hisfile;
+
+int stin;
+int stou;
 
 #endif
 

@@ -103,7 +103,7 @@ void ls(int argc, char **argv)
                 cprint("ERROR: ",RED);
                 printf("Given file or directory does not exist!!\n");
             }
-            printf("\n");
+            if(i != cnt-1)printf("\n");
             continue;
         }
         char temp[MAX_INP_SIZE];
@@ -118,6 +118,8 @@ void ls(int argc, char **argv)
             if(!a && namelist[j]->d_name[0] == '.')
                 tot -= fileStat.st_blocks;
         }
+        if(cnt > 1)
+            printf("%s:\n",path[i]);
         if(l || a)
             printf("total %d\n",tot/2);     //Print the blocks/2 occupied by the program
         for(int j=0; j<x; j++)
@@ -140,9 +142,21 @@ void ls(int argc, char **argv)
                 printf("%-15s ",date);
             }
             if(S_ISDIR(fileStat.st_mode))
-                printf("%s%-15s%s\n",BLU, namelist[j]->d_name,RST);
+            {
+                int curr = dup(STDOUT_FILENO);
+                if(curr == stou)
+                    printf("%s%-15s%s\n",BLU, namelist[j]->d_name,RST);
+                else
+                    printf("%-15s\n",namelist[j]->d_name);
+            }
             else
-                printf("%s%-15s%s\n",WHT, namelist[j]->d_name,RST); 
+            {
+                int curr = dup(STDOUT_FILENO);
+                if(curr == stou)
+                    printf("%s%-15s%s\n",WHT, namelist[j]->d_name,RST);
+                else
+                    printf("%-15s\n",namelist[j]->d_name);
+            }
             free(namelist[j]); 
         } 
         free(namelist);

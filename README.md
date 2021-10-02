@@ -6,6 +6,7 @@
 >
 > ./a.out
 
+To exit the shell, use `quit` or `ctrl-z` (`ctrl-c` has been disabled)
 ## Assumptions:
 
 - Number of semicolon separated inputs is max 512 characters

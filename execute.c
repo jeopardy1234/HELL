@@ -4,6 +4,7 @@
 void execute_whitespace_Separated(char **single_inp, int argc)
 {
     single_inp[argc] = NULL;
+    redirect_input_output(&argc,single_inp);
     if(strcmp(single_inp[0],"pwd") == 0)
         pwd(argc);
     else if(strcmp(single_inp[0],"echo") == 0)
@@ -34,7 +35,7 @@ void execute_command(char *s)
     //s = whitespace_free_input(s);
     char ** single_inp =  malloc(sizeof(char*)*513);    //Not more than 512 semicolons
     char* token = strtok(s, " \t\v");                   //Remove the unnecessary whitespaces
-    int ind = -1;                                       
+    int ind = -1;                                  
     while (token != NULL) {
         ind++;
         single_inp[ind] = malloc(sizeof(char)*(strlen(token)+1));

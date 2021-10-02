@@ -1,1 +1,20 @@
-pinfo
+ls -l > out.txt
+ls > out.txt
+ls -l >> out.txt
+n
+echo hi > out.txt
+cat < main.c
+celar
+echo > out.txt hi
+cat hi.txt
+cat out.txt
+cler
+clesr
+cat main.c
+man open
+ls
+cat main.c < cd.c
+cat < main.c cd.c
+clear
+cat < main.c execute.c
+quit
