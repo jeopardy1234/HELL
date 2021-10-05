@@ -9,7 +9,7 @@ void execute_foreground(int argc, char **argv)
         {
             cprint("ERROR: ",RED);
             printf("Invalid Command!!\n");
-            return;
+            exit(0);
         }    
     }
     else

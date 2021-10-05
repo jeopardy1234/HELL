@@ -27,9 +27,7 @@ int main()
     stou = dup(STDOUT_FILENO);
     while(1)
     {
-        dup2(stin,STDIN_FILENO);
-        dup2(stou,STDOUT_FILENO);
-        signal(SIGINT, SIG_IGN);        //When a child process terminates
+        //signal(SIGINT, SIG_IGN);        //When a child process terminates
         myPrompt = DisplayPrompt();
         printf("%s",myPrompt);
         fflush(stdout);
@@ -52,7 +50,10 @@ int main()
         }
         for(int i=0; i<=ind; i++)
         {
-            execute_command(inp[i]);
+            // execute_command(inp[i]);
+            exec_pipe(inp[i]);
+            dup2(stin,STDIN_FILENO);
+            dup2(stou,STDOUT_FILENO);
         }
     }
     free(myPrompt); free(InputTxt);

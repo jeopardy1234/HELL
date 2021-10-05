@@ -41,6 +41,7 @@ typedef struct proc{
 #define MAX_PROMPT_SIZE 1024
 #define MAX_INP_SIZE    2048
 #define MAX_PATHS       512
+#define MAX_PIPE        64
 
 /*Misc*/
 #define MAX_PROCESSES   1024
@@ -68,6 +69,7 @@ void pinfo(int argc, char **argv);
 void DisplayHistory(int argc, char**argv);
 void StoreHistory(char *s);
 void redirect_input_output(int *argc, char **argv);
+void exec_pipe(char *command);
 
 int toDecimal(char *s);
 

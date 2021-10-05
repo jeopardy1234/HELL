@@ -34,19 +34,16 @@ void redirect_input_output(int *argc, char **argv)
             ind++;
         }
     }
-    printf("%d", *argc);
+
     *argc = ind;
-    printf("%d", *argc);
     for(int i=0; i<*argc; i++)
     {
         strcpy(argv[i],NewInput[i]);
     }
     for(int i=0; i<*argc; i++)
     {
-        printf("%s ", argv[i]);
         free(NewInput[i]);
     }
     argv[*argc] = NULL;
-    printf("\n");
     free(NewInput);
 }
