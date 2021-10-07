@@ -17,10 +17,12 @@ void execute_whitespace_Separated(char **single_inp, int argc)
         repeat(argc,single_inp);
     else if(strcmp(single_inp[0],"pinfo") == 0)
         pinfo(argc,single_inp);
+    else if(strcmp(single_inp[0],"jobs") == 0)
+        DisplayJobs(argc,single_inp);
     else if(strcmp(single_inp[0],"history") == 0)
-    {
         DisplayHistory(argc,single_inp);
-    }
+    else if(strcmp(single_inp[0],"fg") == 0)
+        fg(argc,single_inp);
     else
     {
         if(strcmp("&",single_inp[argc-1]) == 0)

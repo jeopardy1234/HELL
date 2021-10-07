@@ -1,20 +1,20 @@
-gedit &clear
-gedit  &
-echo hello
-xeyes &clear
-xeyes &xyes &
-xeys &
-ls | grep main
-no
-sleep &
-sleep 5 &
+q
+cler
+pinfo 23380
+pinfo 2349
+pinfo 23494
+job 5
+fg 5
+fg 2
+jobs
+fg 3
 ls
-quit
+gedit 
+cgedit
 xeyes &
+gedit
+xeyes
 gedit &
-vim &
-sleep 4 &
+fg 1
 clear
-sleep 1 &
-sleep 2 &
-sleep 3 &
+quit

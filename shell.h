@@ -79,6 +79,8 @@ void pinfo(int argc, char **argv);
 void DisplayHistory(int argc, char**argv);
 void StoreHistory(char *s);
 void redirect_input_output(int *argc, char **argv);
+void fg(int argc, char **argv);
+void DisplayJobs(int argc, char **argv);
 void signal_control_c(int sig);
 void initializeLL(bgpr *head);
 void AddNodeLL(bgpr *node, bgpr *head);

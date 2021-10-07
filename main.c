@@ -29,10 +29,9 @@ int main()
     stou = dup(STDOUT_FILENO);
 
     signal(SIGINT, signal_control_c);
-    //signal(SIGCHLD,ReturnTerminatedProcess);
+    signal(SIGCHLD,ReturnTerminatedProcess);
     while(1)
     {
-        //currJob++;
         myPrompt = DisplayPrompt();
         printf("%s",myPrompt);
         fflush(stdout);
