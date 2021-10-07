@@ -1,11 +1,11 @@
 #include "shell.h"
 
-void fg(int argc, char **argv)
+void bg(int argc, char **argv)
 {
     if(argc != 2)
     {
         cprint("Error: ",RED);
-        printf("fg takes exactly 2 arguments!\n");
+        printf("bg takes exactly 2 arguments!\n");
         return;
     }
     int jb = toDecimal(argv[1]);
@@ -20,21 +20,12 @@ void fg(int argc, char **argv)
     {
         if(head->job_number == jb)
         {
-            prev -> next = head -> next;
-            signal(SIGTTOU, SIG_IGN);
-            tcsetpgrp(0,getpgid(head->pid));
-            kill(head->pid, SIGCONT);
-
-            int status;
-            waitpid(head->pid , &status, WUNTRACED);
-            tcsetpgrp(0,getpgrp());
-
-            signal(SIGTTOU,SIG_DFL);
-
+            if(kill(head->pid, SIGCONT) < 0)
+            {
+                printf("Failed to continue process\n");
+            }
             return;
         }
-        head = head->next;
-        prev = prev->next;
     }
     cprint("Error: ",RED);
     printf("Job not found\n");

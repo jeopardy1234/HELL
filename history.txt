@@ -1,20 +1,20 @@
-q
-cler
-pinfo 23380
-pinfo 2349
-pinfo 23494
-job 5
-fg 5
-fg 2
-jobs
-fg 3
+kill -a
+kill -20 30190
+bg 2
 ls
-gedit 
-cgedit
-xeyes &
-gedit
-xeyes
+kill -20 30356
+bg 1
+ls	; pwd
+sig 1 20
+sig 1 18
+sig 2 9
+sig 1 500
+sig 2 5000
 gedit &
-fg 1
+jobs
+sig 3 5000
+xeyes &
+sig 1 5000
+sig 1 9
 clear
 quit

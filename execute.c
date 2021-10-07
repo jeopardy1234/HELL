@@ -23,6 +23,10 @@ void execute_whitespace_Separated(char **single_inp, int argc)
         DisplayHistory(argc,single_inp);
     else if(strcmp(single_inp[0],"fg") == 0)
         fg(argc,single_inp);
+    else if(strcmp(single_inp[0],"bg") == 0)
+        bg(argc,single_inp);
+    else if(strcmp(single_inp[0],"sig") == 0)
+        sig(argc,single_inp);
     else
     {
         if(strcmp("&",single_inp[argc-1]) == 0)

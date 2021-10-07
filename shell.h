@@ -80,6 +80,8 @@ void DisplayHistory(int argc, char**argv);
 void StoreHistory(char *s);
 void redirect_input_output(int *argc, char **argv);
 void fg(int argc, char **argv);
+void bg(int argc, char **argv);
+void sig(int argc, char **argv);
 void DisplayJobs(int argc, char **argv);
 void signal_control_c(int sig);
 void initializeLL(bgpr *head);
