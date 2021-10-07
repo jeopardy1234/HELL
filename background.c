@@ -7,7 +7,7 @@ void execute_background(int argc, char **argv)
     if(pid == 0)
     {
         printf("%d\n",getpid());        //Current pid
-        //setpgid(0,0);                   //Change process ground of child
+        setpgid(0,0);                   //Change process ground of child
         if(execvp(argv[0],argv) < 0)    //Invalid command
         {
             printf("%d\n",getpid());

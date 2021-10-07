@@ -2,6 +2,7 @@
 
 void AddNodeLL(bgpr *node, bgpr *head)
 {
+
     // if(head -> next == NULL)
     // {
     //     //printf("first,\n");
@@ -11,9 +12,9 @@ void AddNodeLL(bgpr *node, bgpr *head)
     //     //printf("%d\n", head->next);
     //     return;
     // }
-    bgpr *prev = head;
+    bgpr *temp = head;
     //head = head->next;
-    while(head->next != NULL)
+    while(temp->next != NULL)
     {
         //printf("%s\n" , head->process);
         // if(strcmp(head->process, node->process) <= 0)
@@ -29,22 +30,24 @@ void AddNodeLL(bgpr *node, bgpr *head)
         //     node->next = head;
         //     return ;
         // }
-        head = head->next;
+        temp = temp->next;
         // prev = prev->next;
     }
     // prev->next = node;
     // node->next = NULL;
 
-    head->next = node;
+    temp->next = node;
     node->next = NULL;
 }
 
 void printLL(bgpr *head)
 {
-    head = head->next;
-    while(head != NULL)
+    bgpr *temp = head;
+    temp = temp->next;
+    while(temp != NULL)
     {
-        printf("%s\n", head->process);
-        head = head->next;
+        printf("%s\n", temp->process);
+        temp = temp->next;
+        fflush(stdout);
     }
 }

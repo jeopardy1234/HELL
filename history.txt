@@ -1,7 +1,3 @@
-vim
-claer
-echo
-[2;2R[>65;6003;1c]10;rgb:ffff/ffff/ffff]11;rgb:3030/0a0a/2424
 gedit &clear
 gedit  &
 echo hello
@@ -10,11 +6,15 @@ xeyes &xyes &
 xeys &
 ls | grep main
 no
-vim &
 sleep &
 sleep 5 &
 ls
-clear
 quit
-gedit &
 xeyes &
+gedit &
+vim &
+sleep 4 &
+clear
+sleep 1 &
+sleep 2 &
+sleep 3 &
