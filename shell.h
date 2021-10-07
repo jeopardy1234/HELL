@@ -46,11 +46,21 @@ typedef struct proc{
 /*Misc*/
 #define MAX_PROCESSES   1024
 
+/*Structs*/
+typedef struct BackgroundProcess{
+    pid_t pid;
+    int job_number;
+    char process[128];
+    struct BackgroundProcess* next;
+}bgpr;
+
+
 /*Variables*/
 char curr_dir[MAX_DIR_SIZE];
 char inp[512][MAX_INP_SIZE];
 char homedir[MAX_DIR_SIZE];
 process Process_Array[1024];
+bgpr *BgProcesses;
 bool EntersSigchildHandler;
 /*List of Functions*/
 void cprint(char *str_input, char* color);
@@ -69,9 +79,13 @@ void pinfo(int argc, char **argv);
 void DisplayHistory(int argc, char**argv);
 void StoreHistory(char *s);
 void redirect_input_output(int *argc, char **argv);
-void exec_pipe(char *command);
+void signal_control_c(int sig);
+void initializeLL(bgpr *head);
+void AddNodeLL(bgpr *node, bgpr *head);
+void printLL(bgpr *head);
 
 int toDecimal(char *s);
+bool exec_pipe(char *command);
 
 char * DisplayPrompt();
 char *PrevPath;
@@ -79,6 +93,7 @@ char *hisfile;
 
 int stin;
 int stou;
+int currJob;
 
 #endif
 

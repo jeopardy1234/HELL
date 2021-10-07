@@ -7,7 +7,7 @@ void execute_background(int argc, char **argv)
     if(pid == 0)
     {
         printf("%d\n",getpid());        //Current pid
-        setpgid(0,0);                   //Change process ground of child
+        //setpgid(0,0);                   //Change process ground of child
         if(execvp(argv[0],argv) < 0)    //Invalid command
         {
             printf("%d\n",getpid());
@@ -16,16 +16,22 @@ void execute_background(int argc, char **argv)
             exit(0);
         }    
     }
-    /*Store the background processes*/
-    for(int i=0; i<MAX_PROCESSES; i++)
+    else
     {
-        if(Process_Array[i].stat == false)
-        {
-            Process_Array[i].stat = true;
-            Process_Array[i].pid = pid;
-            Process_Array[i].Name = malloc(sizeof(char) * sizeof(argv[0]+1));
-            strcpy(Process_Array[i].Name,argv[0]);
-            break;
-        }
+        //printf("Hi,");
+        currJob++;
+        //printf("%d\n",currJob);
+        bgpr newProc;
+        newProc.pid = pid;
+        newProc.job_number = currJob;
+        strcpy(newProc.process,argv[0]);
+        AddNodeLL(&newProc,BgProcesses);
+        //bgpr *a = BgProcesses;
+        // while(a != NULL)
+        // {
+        //     printf("%d\n",a->pid);
+        //     a=a->next;
+        // }
+        printLL(BgProcesses);
     }
 }

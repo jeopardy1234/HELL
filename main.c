@@ -2,10 +2,12 @@
 
 int main()
 {
+    BgProcesses = malloc(sizeof(bgpr));
+    BgProcesses->next = NULL;
+    currJob = 0;
     char *myPrompt = malloc(sizeof(char)*MAX_PROMPT_SIZE);
     char *InputTxt = malloc(sizeof(char)*MAX_INP_SIZE);
     hisfile = malloc(sizeof(char)*MAX_INP_SIZE);
-    //strcpy(hisfile,"/home/jeopardy/historyyy.txt");
     PrevPath = malloc(sizeof(char)*MAX_DIR_SIZE);
 
     PrevPath[0] = '\0';
@@ -25,13 +27,15 @@ int main()
 
     stin = dup(STDIN_FILENO);
     stou = dup(STDOUT_FILENO);
+
+    signal(SIGINT, signal_control_c);
+    //signal(SIGCHLD,ReturnTerminatedProcess);
     while(1)
     {
-        //signal(SIGINT, SIG_IGN);        //When a child process terminates
+        //currJob++;
         myPrompt = DisplayPrompt();
         printf("%s",myPrompt);
         fflush(stdout);
-        signal(SIGCHLD,ReturnTerminatedProcess);
         fgets(InputTxt, MAX_INP_SIZE, stdin);
         if(strcmp(InputTxt,"\n") == 0)
             continue;
@@ -51,7 +55,9 @@ int main()
         for(int i=0; i<=ind; i++)
         {
             // execute_command(inp[i]);
-            exec_pipe(inp[i]);
+            bool comm = exec_pipe(inp[i]);
+            if(!comm)
+                execute_command(inp[i]);
             dup2(stin,STDIN_FILENO);
             dup2(stou,STDOUT_FILENO);
         }

@@ -1,20 +1,20 @@
-cler
-clesr
-man open
-cat main.c < cd.c
-cat < main.c cd.c
-cat < main.c execute.c
-quit
-echo hello | grep h
+vim
+claer
+echo
+[2;2R[>65;6003;1c]10;rgb:ffff/ffff/ffff]11;rgb:3030/0a0a/2424
+gedit &clear
+gedit  &
+echo hello
+xeyes &clear
+xeyes &xyes &
+xeys &
 ls | grep main
-cat main.c
-cat main.c | head -7 | tail -5
-ls | grep .*.txt
-cat < main.c | wc -l > lines.txt
-nano lines.txt
-nano main.c
-rm lines.txt
+no
+vim &
+sleep &
+sleep 5 &
 ls
 clear
-cat main.c | wc
-cat main.c | wc
+quit
+gedit &
+xeyes &
