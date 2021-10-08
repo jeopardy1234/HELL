@@ -29,6 +29,7 @@ int main()
     stou = dup(STDOUT_FILENO);
 
     signal(SIGINT, signal_control_c);
+    signal(SIGTSTP, signal_control_z);
     signal(SIGCHLD,ReturnTerminatedProcess);
     while(1)
     {
@@ -38,7 +39,9 @@ int main()
         if(fgets(InputTxt, MAX_INP_SIZE, stdin) == NULL)
         {
             printf("\n");
-            break;
+            free(myPrompt); free(InputTxt);
+            free(ProcessPath); free(ProcessInfopath);
+            exit(0);
         }
         if(strcmp(InputTxt,"\n") == 0)
             continue;

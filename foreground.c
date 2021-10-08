@@ -14,6 +14,18 @@ void execute_foreground(int argc, char **argv)
         }    
     }
     else
-        wait(NULL);                     //Shush! Wait unitl the process completes
+    {
+        int status;
+        waitpid(pid, &status, WUNTRACED);                     //Shush! Wait unitl the process completes
+        if(WIFSTOPPED(status))
+        {
+            currJob++;
+            bgpr *node = malloc(sizeof(bgpr));
+            node -> pid = pid;
+            node -> job_number = currJob;
+            strcpy(node -> process, argv[0]);
+            AddNodeLL(node, BgProcesses);
+        }
+    }
     fg_runnin = false;
 }

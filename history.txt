@@ -1,20 +1,20 @@
-dup2(stin,STDIN_FILENO);
-            dup2(stou,STDOUT_FILENO);replay -command echo "hi" -interval 3 -period 0
-replay -command echo "hi" -interval 3 -period 0
-replay -command echo "hi" -interval 3quit
-ls|cat
-replay -command ls|cat "hi" -interval 3 -period 6
-make
-replay -command echo "hi" -interval 3 -period 6
-replay -command ls|cat -interval 3 -period 6
-replay -interval 3 -period 6  -command ls|cat 
-replay
+nano out.txt
+replay -command pwd -interval 12 -period 2
+replay -command pwd -interval 2 -period 12
+replay -command echo hiii -interval 2 -period 12
+sig 1 18
+bg 1
+fg 1
+bg 2
+gedit &
+xeyes &
+vim &
+jobs -s
+jobs
+jobs -r
+firefox &
+ls
 ls -l
 ls -l ..
-ls
 clear
-ls > out.txt
-ls ..
-ls .. > out.txt
-nano out.txt
 quit

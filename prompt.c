@@ -20,7 +20,6 @@ char * DisplayPrompt()
             curr_dir[i] = curr_dir[i+x-1];
         }
     }
-
     sprintf(prompt_val,"<%s%s@%s%s:%s%s>",YEL,usr,system,BLU,curr_dir,RST);
     free(usr);free(system); free(curr_dir);
     return prompt_val;

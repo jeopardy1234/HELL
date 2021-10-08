@@ -88,6 +88,7 @@ void replay(int argc, char **argv);
 void signal_control_c(int sig);
 void initializeLL(bgpr *head);
 void AddNodeLL(bgpr *node, bgpr *head);
+void signal_control_z(int signal);
 void printLL(bgpr *head);
 
 int toDecimal(char *s);

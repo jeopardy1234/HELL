@@ -31,6 +31,16 @@ void fg(int argc, char **argv)
 
             signal(SIGTTOU,SIG_DFL);
 
+            if(WIFSTOPPED(status))
+            {
+                currJob++;
+                bgpr *node = malloc(sizeof(bgpr));
+                node -> pid = head->pid;
+                node -> job_number = currJob;
+                strcpy(node -> process, head->process);
+                AddNodeLL(node, BgProcesses);
+            }
+
             return;
         }
         head = head->next;
