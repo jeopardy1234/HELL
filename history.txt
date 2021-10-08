@@ -1,20 +1,20 @@
-kill -a
-kill -20 30190
-bg 2
+dup2(stin,STDIN_FILENO);
+            dup2(stou,STDOUT_FILENO);replay -command echo "hi" -interval 3 -period 0
+replay -command echo "hi" -interval 3 -period 0
+replay -command echo "hi" -interval 3quit
+ls|cat
+replay -command ls|cat "hi" -interval 3 -period 6
+make
+replay -command echo "hi" -interval 3 -period 6
+replay -command ls|cat -interval 3 -period 6
+replay -interval 3 -period 6  -command ls|cat 
+replay
+ls -l
+ls -l ..
 ls
-kill -20 30356
-bg 1
-ls	; pwd
-sig 1 20
-sig 1 18
-sig 2 9
-sig 1 500
-sig 2 5000
-gedit &
-jobs
-sig 3 5000
-xeyes &
-sig 1 5000
-sig 1 9
 clear
+ls > out.txt
+ls ..
+ls .. > out.txt
+nano out.txt
 quit

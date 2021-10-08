@@ -36,10 +36,10 @@ void ReturnTerminatedProcess(int sig)
 
 void signal_control_c(int signal)
 {
-	printf("\n");
-	char *dis = malloc(MAX_PROMPT_SIZE * sizeof(char));
+    char *dis = malloc(MAX_PROMPT_SIZE * sizeof(char));
+    printf("\n");
+    fflush(stdout);
+    fg_runnin = false;
     DisplayPrompt(dis);
-    printf("%s",dis);
-
-	fflush(stdout);
+    printf("%s\n", dis);
 }

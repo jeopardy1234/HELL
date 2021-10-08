@@ -27,6 +27,8 @@ void execute_whitespace_Separated(char **single_inp, int argc)
         bg(argc,single_inp);
     else if(strcmp(single_inp[0],"sig") == 0)
         sig(argc,single_inp);
+    else if(strcmp(single_inp[0],"replay") == 0)
+        replay(argc,single_inp);
     else
     {
         if(strcmp("&",single_inp[argc-1]) == 0)

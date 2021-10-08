@@ -17,6 +17,10 @@ int pipe_splitter(char *pipe_splitted[MAX_PIPE], char *command)
 bool exec_pipe(char *command)
 {
     char *pipeCommands[MAX_PIPE];
+    char *temp = malloc(sizeof(char) * MAX_INP_SIZE);
+    strcpy(temp, command);
+    char *tokcheck = strtok(temp, " \t\v");
+    if(strcmp(tokcheck, "replay") == 0)return false;
     int numPipes = pipe_splitter(pipeCommands , command);
     int fd[2];
     int input_fd = dup(0);

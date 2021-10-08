@@ -144,15 +144,14 @@ void ls(int argc, char **argv)
             if(S_ISDIR(fileStat.st_mode))
             {
                 int curr = dup(STDOUT_FILENO);
-                if(curr == stou)
+                if(isatty(STDOUT_FILENO))
                     printf("%s%-15s%s\n",BLU, namelist[j]->d_name,RST);
                 else
                     printf("%-15s\n",namelist[j]->d_name);
             }
             else
             {
-                int curr = dup(STDOUT_FILENO);
-                if(curr == stou)
+                if(isatty(STDOUT_FILENO))
                     printf("%s%-15s%s\n",WHT, namelist[j]->d_name,RST);
                 else
                     printf("%-15s\n",namelist[j]->d_name);

@@ -12,6 +12,7 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <signal.h>
+#include <setjmp.h>
 
 #ifndef SABKA_BAAP_SHELL
 #define SABKA_BAAP_SHELL
@@ -83,6 +84,7 @@ void fg(int argc, char **argv);
 void bg(int argc, char **argv);
 void sig(int argc, char **argv);
 void DisplayJobs(int argc, char **argv);
+void replay(int argc, char **argv);
 void signal_control_c(int sig);
 void initializeLL(bgpr *head);
 void AddNodeLL(bgpr *node, bgpr *head);
@@ -98,6 +100,7 @@ char *hisfile;
 int stin;
 int stou;
 int currJob;
+int fg_runnin;
 
 #endif
 

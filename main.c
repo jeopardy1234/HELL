@@ -4,7 +4,7 @@ int main()
 {
     BgProcesses = malloc(sizeof(bgpr));
     BgProcesses->next = NULL;
-    currJob = 0;
+    currJob = 0;fg_runnin = 0;
     char *myPrompt = malloc(sizeof(char)*MAX_PROMPT_SIZE);
     char *InputTxt = malloc(sizeof(char)*MAX_INP_SIZE);
     hisfile = malloc(sizeof(char)*MAX_INP_SIZE);
@@ -35,7 +35,11 @@ int main()
         myPrompt = DisplayPrompt();
         printf("%s",myPrompt);
         fflush(stdout);
-        fgets(InputTxt, MAX_INP_SIZE, stdin);
+        if(fgets(InputTxt, MAX_INP_SIZE, stdin) == NULL)
+        {
+            printf("\n");
+            break;
+        }
         if(strcmp(InputTxt,"\n") == 0)
             continue;
         FILE* history_file = fopen(hisfile,"rw");
@@ -53,7 +57,6 @@ int main()
         }
         for(int i=0; i<=ind; i++)
         {
-            // execute_command(inp[i]);
             bool comm = exec_pipe(inp[i]);
             if(!comm)
                 execute_command(inp[i]);
