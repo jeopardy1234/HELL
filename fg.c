@@ -39,6 +39,7 @@ void fg(int argc, char **argv)
                 node -> job_number = currJob;
                 strcpy(node -> process, head->process);
                 AddNodeLL(node, BgProcesses);
+                fg_to_bg = 1;
             }
 
             return;

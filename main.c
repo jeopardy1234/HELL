@@ -4,7 +4,7 @@ int main()
 {
     BgProcesses = malloc(sizeof(bgpr));
     BgProcesses->next = NULL;
-    currJob = 0;fg_runnin = 0;
+    currJob = 0;fg_runnin = 0;fg_to_bg=0;
     char *myPrompt = malloc(sizeof(char)*MAX_PROMPT_SIZE);
     char *InputTxt = malloc(sizeof(char)*MAX_INP_SIZE);
     hisfile = malloc(sizeof(char)*MAX_INP_SIZE);

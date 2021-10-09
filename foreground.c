@@ -25,6 +25,7 @@ void execute_foreground(int argc, char **argv)
             node -> job_number = currJob;
             strcpy(node -> process, argv[0]);
             AddNodeLL(node, BgProcesses);
+            fg_to_bg = 1;
         }
     }
     fg_runnin = false;

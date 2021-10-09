@@ -38,22 +38,14 @@ bool exec_pipe(char *command)
         }
         if(i != numPipes)
         {
-            pipe(fd);
-            //output_fd = dup(1);
+            if(pipe(fd) < 0)
+            {
+                cprint("ERROR: ",RED);
+                printf("Invalid Piping!");
+            }
             dup2(fd[1] , 1);
         }
-        // int pid = fork();
-        // if(pid == 0)
-        // {
-        //     execute_command(pipeCommands[i]);
-        //     exit(0);
-        // }
-        // else
-        // {
-        //     wait(NULL);
-        //     dup2(input_fd,0);
-        //     dup2(stou,1);
-        // }
+
         execute_command(pipeCommands[i]);
         dup2(input_fd,0);
         dup2(stou,1);

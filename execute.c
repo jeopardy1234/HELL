@@ -29,6 +29,8 @@ void execute_whitespace_Separated(char **single_inp, int argc)
         sig(argc,single_inp);
     else if(strcmp(single_inp[0],"replay") == 0)
         replay(argc,single_inp);
+    else if(strcmp(single_inp[0],"baywatch") == 0)
+        baywatch(argc,single_inp);
     else
     {
         if(strcmp("&",single_inp[argc-1]) == 0)

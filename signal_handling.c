@@ -10,6 +10,17 @@ void ReturnTerminatedProcess(int sig)
         int waitRet = waitpid(head->pid,&stat,WNOHANG);
         if(waitRet != 0)
         {
+            bgpr *temp = BgProcesses->next;
+            currJob--;
+            while(temp)
+            {
+                if(temp -> job_number > head -> job_number)
+                {
+                    temp->job_number--;
+                }
+                temp = temp->next;
+            }
+            free(temp);
             if(!stat)
             {
                 printf("\nProcess %s with id %d terminated normally\n",head->process,head->pid);
@@ -52,6 +63,13 @@ void signal_control_c(int signal)
 
 void signal_control_z(int signal)
 {
+    if(fg_to_bg)
+    {
+        printf("\n");
+        fflush(stdout);
+        fg_to_bg = false;
+        return ;
+    }
     char *dis = malloc(MAX_PROMPT_SIZE * sizeof(char));
     printf("\n");
     dis = DisplayPrompt();

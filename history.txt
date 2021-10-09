@@ -1,20 +1,20 @@
-nano out.txt
-replay -command pwd -interval 12 -period 2
-replay -command pwd -interval 2 -period 12
-replay -command echo hiii -interval 2 -period 12
-sig 1 18
-bg 1
-fg 1
-bg 2
-gedit &
-xeyes &
-vim &
-jobs -s
-jobs
-jobs -r
-firefox &
-ls
 ls -l
 ls -l ..
+gedit &
+xeyes &
+gedit
+jobs
+baywatch -n 5 dirty
+baywatch -n 3 dirty
+baywatch -n -1 dirty
+baywatch -n 1 dirty
+nightswatch -n 2 newborn
+baywatch -n 2 newborn
+history
+qquit
+ls
+baywatch -n 2 dirty
+q
+baywatch -n 2 interrupt
 clear
 quit

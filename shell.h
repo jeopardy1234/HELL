@@ -13,6 +13,8 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <setjmp.h>
+#include <termios.h>
+#include <errno.h>
 
 #ifndef SABKA_BAAP_SHELL
 #define SABKA_BAAP_SHELL
@@ -78,6 +80,7 @@ void execute_whitespace_Separated(char **single_inp, int argc);
 void repeat(int argc, char **argv);
 void pinfo(int argc, char **argv);
 void DisplayHistory(int argc, char**argv);
+void baywatch(int argc, char **argv);
 void StoreHistory(char *s);
 void redirect_input_output(int *argc, char **argv);
 void fg(int argc, char **argv);
@@ -102,6 +105,7 @@ int stin;
 int stou;
 int currJob;
 int fg_runnin;
+int fg_to_bg;
 
 #endif
 
