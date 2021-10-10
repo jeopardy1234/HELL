@@ -9,21 +9,20 @@ int main()
     char *InputTxt = malloc(sizeof(char)*MAX_INP_SIZE);
     hisfile = malloc(sizeof(char)*MAX_INP_SIZE);
     PrevPath = malloc(sizeof(char)*MAX_DIR_SIZE);
+    char *usr = (char*) malloc(sizeof(char)*MAX_USR_SIZE);
 
     PrevPath[0] = '\0';
-    for(int i=0; i<MAX_PROCESSES; i++)
-        Process_Array[i].stat = false;
     getcwd(homedir,MAX_DIR_SIZE);       //Permanant variable home directory
     /*Finding the dir of a.out*/
     char *ProcessPath  = malloc(sizeof(char) * MAX_INP_SIZE);
     char *ProcessInfopath = malloc(sizeof(char) * MAX_INP_SIZE);
+    getlogin_r(usr,MAX_USR_SIZE);
     int pid = getpid();
     sprintf(ProcessInfopath,"/proc/%d/exe",pid);
     readlink(ProcessInfopath,ProcessPath , MAX_INP_SIZE);
-    int LastSlash = (strrchr(ProcessPath,'/')-ProcessPath+1);
-    for(int i=0; i<LastSlash; i++)
-        strncat(hisfile,&ProcessPath[i],1);
-    strcat(hisfile,"history.txt");
+    strcat(hisfile,"/home/");
+    strcat(hisfile, usr);
+    strcat(hisfile,"/history_hell_jeo007.txt");
 
     stin = dup(STDIN_FILENO);
     stou = dup(STDOUT_FILENO);
@@ -49,9 +48,9 @@ int main()
         }
         if(strcmp(InputTxt,"\n") == 0)
             continue;
-        FILE* history_file = fopen(hisfile,"rw");
+        int history_file = open(hisfile, O_APPEND|O_CREAT);
         StoreHistory(InputTxt);
-        fclose(history_file);
+        close(history_file);
         InputTxt[strcspn(InputTxt, "\n")] = 0;
         if(strcmp("quit",InputTxt) == 0)
             return 0;

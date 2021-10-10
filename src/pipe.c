@@ -32,6 +32,7 @@ bool exec_pipe(char *command)
     int output_fd = dup(1);
     if(numPipes == 0)
         return false;
+    
     for(int i=0; i<=numPipes; i++)
     {
         if(i!=0)
@@ -51,10 +52,19 @@ bool exec_pipe(char *command)
             }
             dup2(fd[1] , 1);
         }
+        int pid = fork();
+        if(pid == 0)
+        {
+            execute_command(pipeCommands[i]);
+            exit(0);
+        }
+        else
+        {
+            wait(NULL);
+            dup2(input_fd,0);
+            dup2(stou,1);
+        }
 
-        execute_command(pipeCommands[i]);
-        dup2(input_fd,0);
-        dup2(stou,1);
 
     }
     return true;

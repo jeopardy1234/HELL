@@ -20,11 +20,6 @@
 #ifndef SABKA_BAAP_SHELL
 #define SABKA_BAAP_SHELL
 
-typedef struct proc{
-    int pid;
-    char *Name;
-    bool stat; //0 for passive, 1 for active
-}process;
 /*List of Macros*/
 
 /*Colors*/
@@ -63,7 +58,6 @@ typedef struct BackgroundProcess{
 char curr_dir[MAX_DIR_SIZE];
 char inp[512][MAX_INP_SIZE];
 char homedir[MAX_DIR_SIZE];
-process Process_Array[1024];
 bgpr *BgProcesses;
 bool EntersSigchildHandler;
 /*List of Functions*/
