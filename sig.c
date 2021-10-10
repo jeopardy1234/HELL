@@ -33,6 +33,8 @@ void sig(int argc, char **argv)
             }
             return;
         }
+        head = head->next;
+        prev = prev->next;
     }
     cprint("Error: ",RED);
     printf("Job not found\n");

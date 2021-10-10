@@ -1,5 +1,13 @@
 #include "shell.h"
 
+/*
+    Use raw mode terminal to exit on key press
+    interrupt - /proc/interrupts
+    newborn   - /proc/loadavg
+    dirty     - /proc/meminfo
+    Exit raw mode. Re-enter cooked mode
+*/
+
 struct termios orig_termios;
 void die(const char *s) {}
 void disableRawMode() {
@@ -26,7 +34,7 @@ void baywatch(int argc, char **argv)
     {
         disableRawMode();
         cprint("ERROR: ",RED);
-        printf("Invalid Arguments!!");
+        printf("Invalid Arguments!!\n");
         return ;
     }
     bool print = false;
@@ -140,5 +148,6 @@ void baywatch(int argc, char **argv)
             break;
         }
     }
+    free(line);
     disableRawMode();
-}
+} 

@@ -15,6 +15,7 @@
 #include <setjmp.h>
 #include <termios.h>
 #include <errno.h>
+#include <ctype.h>
 
 #ifndef SABKA_BAAP_SHELL
 #define SABKA_BAAP_SHELL
@@ -82,20 +83,20 @@ void pinfo(int argc, char **argv);
 void DisplayHistory(int argc, char**argv);
 void baywatch(int argc, char **argv);
 void StoreHistory(char *s);
-void redirect_input_output(int *argc, char **argv);
 void fg(int argc, char **argv);
 void bg(int argc, char **argv);
 void sig(int argc, char **argv);
 void DisplayJobs(int argc, char **argv);
 void replay(int argc, char **argv);
-void signal_control_c(int sig);
+void signal_handler_c(int sig);
+void signal_handler_z(int sig);
 void initializeLL(bgpr *head);
 void AddNodeLL(bgpr *node, bgpr *head);
-void signal_control_z(int signal);
 void printLL(bgpr *head);
 
 int toDecimal(char *s);
 bool exec_pipe(char *command);
+bool redirect_input_output(int *argc, char **argv);
 
 char * DisplayPrompt();
 char *PrevPath;

@@ -16,7 +16,7 @@ void execute_foreground(int argc, char **argv)
     else
     {
         int status;
-        waitpid(pid, &status, WUNTRACED);                     //Shush! Wait unitl the process completes
+        waitpid(pid, &status, WUNTRACED);    //Shush! Wait unitl the process completes
         if(WIFSTOPPED(status))
         {
             currJob++;

@@ -4,7 +4,8 @@
 void execute_whitespace_Separated(char **single_inp, int argc)
 {
     single_inp[argc] = NULL;
-    redirect_input_output(&argc,single_inp);
+    if(!redirect_input_output(&argc,single_inp))
+        return;
     if(strcmp(single_inp[0],"pwd") == 0)
         pwd(argc);
     else if(strcmp(single_inp[0],"echo") == 0)

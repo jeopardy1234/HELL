@@ -45,7 +45,7 @@ void ReturnTerminatedProcess(int sig)
     return ;
 }
 
-void signal_control_c(int signal)
+void signal_handler_c(int signal)
 {
     if(fg_runnin)
     {
@@ -61,7 +61,7 @@ void signal_control_c(int signal)
     fflush(stdout);
 }
 
-void signal_control_z(int signal)
+void signal_handler_z(int signal)
 {
     if(fg_to_bg)
     {

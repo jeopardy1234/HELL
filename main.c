@@ -28,11 +28,15 @@ int main()
     stin = dup(STDIN_FILENO);
     stou = dup(STDOUT_FILENO);
 
-    signal(SIGINT, signal_control_c);
-    signal(SIGTSTP, signal_control_z);
+    signal(SIGINT, signal_handler_c);
+    signal(SIGTSTP, signal_handler_z);
     signal(SIGCHLD,ReturnTerminatedProcess);
+
+    char buffer[MAX_INP_SIZE];
+
     while(1)
     {
+        char buffer[MAX_INP_SIZE];
         myPrompt = DisplayPrompt();
         printf("%s",myPrompt);
         fflush(stdout);

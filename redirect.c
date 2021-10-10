@@ -1,15 +1,29 @@
 #include "shell.h"
 
-void redirect_input_output(int *argc, char **argv)
+bool redirect_input_output(int *argc, char **argv)
 {
     char ** NewInput = malloc(sizeof(char) * 513);
+    bool retVal = true;
     int ind = 0;
     int argu = 0;
     for(int i=0; i<*argc; i++)
     {
+        if(i == *argc-1 && (strcmp(argv[i] , ">") == 0 || strcmp(argv[i] , "<") == 0 || strcmp(argv[i] , ">>") == 0))
+        {
+            cprint("ERROR: ",RED);
+            printf("Unexpected redirection near newline!!\n");
+            retVal = false;
+            break;
+        }
         if(strcmp("<", argv[i]) == 0)
         {
             int file = open(argv[i++ + 1],O_RDONLY);
+            if(file < 0)
+            {
+                cprint("ERROR: ",RED);
+                printf("File doesn't exist!!\n");
+                return false;
+            }
             dup2(file, 0);
             close(file);
         }
@@ -46,4 +60,5 @@ void redirect_input_output(int *argc, char **argv)
     }
     argv[*argc] = NULL;
     free(NewInput);
+    return retVal;
 }

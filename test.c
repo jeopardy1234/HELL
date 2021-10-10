@@ -28,7 +28,7 @@
 //   int t_before = time(NULL);
 //   while (1) {
 //     int t_after = time(NULL);
-//     if(t_after - t_before >= 3)
+//     if(t_after - t_before >= 0)
 //     {
 //         char c = '\0';
 //         if (read(STDIN_FILENO, &c, 1) == -1 && errno != EAGAIN) die("read");

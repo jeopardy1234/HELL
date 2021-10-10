@@ -20,6 +20,15 @@ void fg(int argc, char **argv)
     {
         if(head->job_number == jb)
         {
+            bgpr *temp = BgProcesses;
+            currJob--;
+            while(temp != NULL)
+            {
+                if(temp -> job_number > jb)
+                    temp->job_number--;
+                temp = temp->next;
+            }
+            free(temp);
             prev -> next = head -> next;
             signal(SIGTTOU, SIG_IGN);
             tcsetpgrp(0,getpgid(head->pid));
@@ -31,6 +40,7 @@ void fg(int argc, char **argv)
 
             signal(SIGTTOU,SIG_DFL);
 
+            /*Incase fg process stops due to ctrl-z*/
             if(WIFSTOPPED(status))
             {
                 currJob++;

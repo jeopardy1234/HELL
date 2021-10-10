@@ -1,20 +1,20 @@
-ls -l
-ls -l ..
-gedit &
+cat main.c | head -7 | tail -5
+jobs -r
+jobs -s
+sig 4 9
 xeyes &
-gedit
+fg 1
+vim &
+bg 1
+gedit &
+firefox &
+fg 2
+bg 2
 jobs
-baywatch -n 5 dirty
-baywatch -n 3 dirty
-baywatch -n -1 dirty
+gedit
+replay -command pwd -interval 2 period 10
+replay -command pwd -interval 2 -period 10
+baywatch -n 5 interrupt
 baywatch -n 1 dirty
-nightswatch -n 2 newborn
-baywatch -n 2 newborn
-history
-qquit
-ls
-baywatch -n 2 dirty
-q
-baywatch -n 2 interrupt
+baywatch -n 5 newborn
 clear
-quit

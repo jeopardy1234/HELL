@@ -1,5 +1,10 @@
 #include "shell.h"
 
+/*
+    strtok to split wrt |
+    Use fd[2] and pipe(fd) to continuously until the last |
+*/
+
 int pipe_splitter(char *pipe_splitted[MAX_PIPE], char *command)
 {
     int num_pipes = -1;
@@ -41,7 +46,8 @@ bool exec_pipe(char *command)
             if(pipe(fd) < 0)
             {
                 cprint("ERROR: ",RED);
-                printf("Invalid Piping!");
+                printf("Invalid Piping!\n");
+                break;
             }
             dup2(fd[1] , 1);
         }

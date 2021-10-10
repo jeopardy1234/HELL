@@ -1,5 +1,10 @@
 #include "shell.h"
 
+/*
+    Jobs are already inserted in sorted order of proc name
+    Check for presence of s and r flags (activate both if none present)
+*/
+
 void DisplayJobs(int argc, char **argv)
 {
     int r=0,s=0;
