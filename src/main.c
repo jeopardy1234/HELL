@@ -48,7 +48,7 @@ int main()
         }
         if(strcmp(InputTxt,"\n") == 0)
             continue;
-        int history_file = open(hisfile, O_APPEND|O_CREAT);
+        int history_file = open(hisfile, O_APPEND|O_CREAT,777);
         StoreHistory(InputTxt);
         close(history_file);
         InputTxt[strcspn(InputTxt, "\n")] = 0;
