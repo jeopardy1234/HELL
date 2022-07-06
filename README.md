@@ -1,4 +1,5 @@
-# (S)Hell
+# Y-ASH
+Y-ash is an interactive user defined B-ash-like Shell which supports semicolon separated list of commands. It supports piping, I/O redirection, process management and signal handling.
 
 ## To Run:
 
